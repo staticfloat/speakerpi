@@ -1,0 +1,11 @@
+[Unit]
+Description=bananaNET interface
+After=multi-user.target
+ 
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/bash -c 'ip link set wlan1 down; ip link set wlan1 up; iw wlan1 set type ibss; iw wlan1 ibss join bananaNET 2462; ip addr change fd37:5041::1/96 dev wlan1'
+ 
+[Install]
+WantedBy=multi-user.target
